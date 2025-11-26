@@ -1,101 +1,37 @@
-# Git guidance
+# How to use git upload your files?
 
-How to use git upload your files?
-
-## Preparation
-
-1. 生成SSH密钥
+1.首先在github个人主页创建自己的仓库，然后克隆到本地
 
 ```
-ssh-keygen -t ed25519 -C "your_email@example.com"
+git clone https://github.com/your-username/your-repo.git
 ```
 
-> ed25519为加密算法
-> 
-> 按Enter接受默认位置
-> 
-> 设置密码（可选）
-
-2. 复制公钥并添加
-
-```
-cat ~/.ssh/id_ed25519.pub
-```
-
-> 登录 GitHub → 点击右上角头像 → Settings
->
-> 左侧菜单 → SSH and GPG keys
->
-> 点击 New SSH key
->
-
-3. 测试连接
-
-```
-ssh -T git@github.com
-```
-
->如果看到类似这样的消息，说明成功:
->
-> Hi yourName! You've successfully authenticated, but GitHub does not provide shell access.
-
-## Setting in the project
-
-```
-git init
-```
-
-> 配置用户信息 
-
-```
-git config user.name "yourName"
-git config user.email "your_email@example.com"
-```
-
-> 添加文件到暂存区
+2.把需要上传的代码放入刚才克隆的仓库，然后添加当前目录下所有变更的文件
 
 ```
 git add .
 ```
 
-> 查看暂存状态，绿色表示成功
+3.提交更改并写入提交信息
 
 ```
-git commit -m "任意说明"
+git commit -m "你的提交描述"
 ```
 
-添加远程仓库
-
-```
-git remote add origin git@github.com:yourName/yourRepository.git
-```
-
-> 修改远程URL为SSH
-
-```
-git remote set-url origin git@github.com:yourName/yourRepository.git
-```
-
-## 查看分支
-
-```
-git branch
-```
-
-> 重命名本地分支：git branch -M newBranch
-> 
-> 切换分支git checkout -b main
-
-## 上传
+4.推送更改到 GitHub 仓库,-u 参数表示将本地的 main 分支与远程仓库的 main 分支进行关联
 
 ```
 git push -u origin main
 ```
 
-## 后续更新代码
+5.输入 GitHub 用户名和 Token
 
-```
-git add --all
-git commit -m "描述你的更改"
-git push
-```
+> 生成 GitHub Personal Access Token (PAT)：
+>
+> 登录 GitHub 后，点击右上角的头像，选择 Settings。
+>
+> 在左侧菜单选择 Developer settings，然后选择 Personal access tokens。
+>
+> 点击 Generate new token，并设置你需要的权限（例如 repo 权限用于访问私有仓库）。
+>
+> 生成后，复制这个 Token 并保存在安全的地方。
